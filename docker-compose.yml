@@ -1,0 +1,65 @@
+services:
+  analytics-db:
+    image: postgres:latest
+    container_name: analytics-db
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: analytics-db
+    volumes:
+      - analytics-data:/var/lib/postgresql
+    ports:
+      - '5433:5432'
+
+  auth-db:
+    image: postgres:latest
+    container_name: auth-db
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: auth-db
+    volumes:
+      - service2-data:/var/lib/postgresql
+    ports:
+      - '5434:5432'
+
+  emails-db:
+    image: postgres:latest
+    container_name: emails-db
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: emails-db
+    volumes:
+      - service3-data:/var/lib/postgresql
+    ports:
+      - '5435:5432'
+
+  users-db:
+    image: postgres:latest
+    container_name: users-db
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: users-db
+    volumes:
+      - service4-data:/var/lib/postgresql
+    ports:
+      - '5436:5432'
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - '8080:8080'
+
+volumes:
+  analytics-data:
+  service2-data:
+  service3-data:
+  service4-data:
